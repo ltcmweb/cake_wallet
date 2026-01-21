@@ -198,7 +198,6 @@ class ExceptionHandler {
     'Exception: 6e00',
     'Exception: 6985',
     'Exception: 5515',
-    'transport error'
   ];
 
   static bool isLedgerError(Object exception) =>
@@ -297,6 +296,7 @@ class ExceptionHandler {
     "_QueuedFuture.execute (package:universal_ble/src/queue.dart:65)",
     "reown_core/relay_client/websocket/websocket_handler.dart",
     "Image upload failed due to loss of GPU access",
+    'transport error',
   ];
 
   static Future<void> _addDeviceInfo(File file) async {

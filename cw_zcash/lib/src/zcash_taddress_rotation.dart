@@ -239,8 +239,8 @@ class ZcashTaddressRotation {
 
       final List<String> hiddenAddresses_ = [];
       for (int k = 0; k < wis.length; k++) {
-        final addrs = await wis[i].getHiddenAddresses();
-        final addr2 = await wis[i].getUsedAddresses();
+        final addrs = await wis[k].getHiddenAddresses();
+        final addr2 = await wis[k].getUsedAddresses();
         hiddenAddresses_.addAll(addrs);
         hiddenAddresses_.addAll(addr2);
       }
