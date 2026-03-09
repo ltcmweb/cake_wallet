@@ -121,10 +121,10 @@ class _BarcodeScannerSimpleState extends State<BarcodeScannerSimple> {
             onDetect: _handleBarcode,
             controller: ctrl,
           ),
-          if (decoder.processedPartsCount() != 0)
+          if (decoder.expectedPartCount() != null)
             Center(
               child: Text(
-                "${decoder.processedPartsCount()}/${decoder.expectedPartCount()}",
+                "${decoder.processedPartsCount()}/${decoder.expectedPartCount()!}",
                 style: Theme.of(context)
                     .textTheme
                     .displayLarge
@@ -139,9 +139,9 @@ class _BarcodeScannerSimpleState extends State<BarcodeScannerSimple> {
                 child: CustomPaint(
                   painter: ProgressPainter(
                     urQrProgress: URQrProgress(
-                      expectedPartCount: decoder.expectedPartCount(),
+                      expectedPartCount: decoder.expectedPartCount()!,
                       processedPartsCount: decoder.processedPartsCount(),
-                      receivedPartIndexes: decoder.receivedPartIndexes(),
+                      receivedPartIndexes: decoder.receivedPartIndexes().toList(),
                       percentage: decoder.estimatedPercentComplete(),
                     ),
                   ),
