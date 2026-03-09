@@ -139,7 +139,7 @@ class _BarcodeScannerSimpleState extends State<BarcodeScannerSimple> {
                 child: CustomPaint(
                   painter: ProgressPainter(
                     urQrProgress: URQrProgress(
-                      expectedPartCount: decoder.expectedPartCount()!,
+                      expectedPartCount: decoder.expectedPartCount() ?? 0,
                       processedPartsCount: decoder.processedPartsCount(),
                       receivedPartIndexes: decoder.receivedPartIndexes().toList(),
                       percentage: decoder.estimatedPercentComplete(),
