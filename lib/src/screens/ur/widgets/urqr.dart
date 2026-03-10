@@ -11,9 +11,6 @@ import 'package:cw_core/wallet_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ur/ur.dart';
-import 'package:ur/ur_decoder.dart';
-import 'package:ur/ur_encoder.dart';
 
 class URQR extends StatefulWidget {
   const URQR({super.key, required this.urqr, required this.walletType, this.hardwareWalletType});
@@ -69,23 +66,6 @@ class _URQRState extends State<URQR> {
   void _nextFrame() => setState(() => frame++);
 
 
-  UREncoder? encoder;
-
-  String getNextFrame() {
-    if (_getCurrentFormatName().startsWith('Cupcake')) {
-      if (encoder == null) {
-        final decoder = URDecoder();
-        for (final frame in frames) {
-          decoder.receivePart(frame);
-        }
-        encoder = UREncoder(decoder.result as UR, 120);
-      }
-      return encoder!.nextPart();
-    }
-    return frames[frame % frames.length];
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -97,7 +77,7 @@ class _URQRState extends State<URQR> {
             padding: const EdgeInsets.all(24.0),
             child: Container(
               child: QrImage(
-                data: getNextFrame(),
+                data: frames[frame % frames.length],
                 version: -1,
                 size: null,
               ),
